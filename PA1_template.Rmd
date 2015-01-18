@@ -1,6 +1,8 @@
 ---
 title: "Peer Assignment #1"
-output: html_document
+output: 
+   html_document:
+   keep_md: true
 ---
 This is an R Markdown document produced for the submission os Peer Assignment #1 for the Coursera course "Reproducible Research". The code chunks for each of the steps mentioned are given below in order
 
@@ -56,6 +58,7 @@ The maximum average steps taken for an interval across days is `r round(max_avg$
 1. The total number of missing values in the data set is `r nrow(act_df[!complete.cases(act_df),])`
 
 2. The 'NA' values in step are replaced by the mean steps for the interval across days
+
 3. New data set with replaced values for NA is created. Steps 2 & 3 is accomplished in the following 
    chunk of code
 ```{r}
@@ -93,7 +96,7 @@ The Estimate for the the total number of steps daily has also increased after im
 act_df_week <- act_df_new%>%mutate(wk_day = ifelse (weekdays(Date) %in% c("Sunday", "Saturday"), "Weekend", "Weekday"))
 ```
  
- 
+2. Panel plot with Time series plot of 5 mins interval  
 ```{r}
 act_df_wkdy <- filter(act_df_week, wk_day == "Weekday")
 act_by_intrvl_wkday <- group_by(act_df_wkdy, interval)
@@ -110,7 +113,7 @@ plot(avg_by_intrvl_wknd$interval, avg_by_intrvl_wknd$avg_intrvl, type = 'l', mai
          col = "red", xlab = "Interval", ylab = "Average steps by interval")
 ```
 
-
+#### End of peer assignment#1
 
 
 
